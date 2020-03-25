@@ -1,5 +1,5 @@
 
-FROM hugobuilder:latest as HUGO
+FROM jfmatth/hugobuilder:latest as HUGO
 
 # Copy the contents of the current working directory to the static-site directory.
 COPY . /static-site

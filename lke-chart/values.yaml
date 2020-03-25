@@ -5,8 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: jfmatth/myhugoapp
-  tag: latest
+  repository: jfmatth/hugoapp
   pullPolicy: Always
 
 imagePullSecrets: []
