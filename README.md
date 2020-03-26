@@ -23,6 +23,6 @@ helm install hugo lke-chart
 ```
 ## Upgrade after changes to content
 ```
-helm upgrade hugo lke-chart
+helm upgrade hugo lke-chart  --set timestamp="$(date)"
 ```
 
