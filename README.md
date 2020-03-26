@@ -18,9 +18,17 @@ docker build . -t jfmatth/hugoapp:0.1
 docker push jfmatth/hugoapp:0.1
 ```
 ## Installing via Helm (v3)
+
+*Laptop*
 ```
-helm install hugo lke-chart
+helm install hugo lke-chart -f lke-chart/values-laptop.yaml
 ```
+
+*Production*
+```
+helm install hugo lke-chart -f lke-chart/values-prod.yaml
+```
+
 ## Upgrade after changes to content
 ```
 helm upgrade hugo lke-chart  --set timestamp="$(date)"
