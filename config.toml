@@ -1,4 +1,4 @@
 
 languageCode = "en-us"
 title = "My New Hugo Site on K3s"
-theme="ananke"
+theme="hugo-theme-noteworthy"
