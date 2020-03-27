@@ -43,8 +43,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: hugo.45.79.53.216.nip.io
- 
-    paths: ['/']
+      paths: ['/']
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
