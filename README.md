@@ -6,9 +6,19 @@
 - helm v3
 - a Kubernetes cluster
 
-## Running hugo on Hyper-V Windows 10 (assuming primary.mshome.net)
+## Cloning this repo for use
+Since this repo uses submodules, make sure you clone it with the --recursive flag.
+
 ```
-hugo server -b 0.0.0
+git clone --recursive https://github.com/jfmatth/lke-example.git
+```
+
+## Running hugo on Hyper-V Windows 10 (assuming primary.mshome.net)
+
+To run a HUGO server to show the current content, run the following
+
+```
+hugo server --bind 0.0.0
 ```
 browse to http://primary.mshome.net:1313
 
