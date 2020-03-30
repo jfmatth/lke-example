@@ -39,7 +39,7 @@ jobs:
             
     - name: helm upgrade
       run: |
-        helm upgrade hugo lke-chart --set timestamp="$(date)"
+        helm upgrade hugo lke-chart --set timestamp="$(date)" --kubeconfig config
 
 
 
