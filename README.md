@@ -4,7 +4,7 @@
 - hugo v.68 or better (versions on ubuntu / debian are too old)
 - docker
 - helm v3
-- a Kubernetes cluster
+- a Kubernetes environment you have setup and access to for HELM
 
 ## Cloning this repo for use
 Since this repo uses submodules, make sure you clone it with the --recursive flag.
@@ -13,16 +13,15 @@ Since this repo uses submodules, make sure you clone it with the --recursive fla
 git clone --recursive https://github.com/jfmatth/lke-example.git
 ```
 
-## Running hugo on Hyper-V Windows 10 (assuming primary.mshome.net)
+## Running a hugo server to see your content rendered
 
 To run a HUGO server to show the current content, run the following
 
 ```
 hugo server --bind 0.0.0
 ```
-browse to http://primary.mshome.net:1313
 
-## Building the container
+## Building the container for kubernetes use
 ```
 docker build . -t jfmatth/hugoapp:0.1
 docker push jfmatth/hugoapp:0.1
@@ -39,8 +38,15 @@ helm install hugo lke-chart -f lke-chart/values-laptop.yaml
 helm install hugo lke-chart -f lke-chart/values-prod.yaml
 ```
 
-## Upgrade after changes to content
-```
-helm upgrade hugo lke-chart  --set timestamp="$(date)"
-```
+## Updating the site and pushing to Kubernetes (i.e. Workflow)
+- update content 
+- rebuild docker container (./buildit.sh)
+- update the HELM chart to refresh the pods 
+    
+    ```
+    helm upgrade hugo lke-chart -f <values for environment> --set timestamp="$(date)"
+    ```
 
+## notes
+
+I am working on moving the workflow into a github action, stay tuned for updates to this repo
