@@ -44,9 +44,10 @@ jobs:
     - name: write KUBECONFIG to file
       run: |
         echo '${{ secrets.KUBECONFIG }}' > config
+        export KUBECONFIG=$(pwd)/config
         
     - name: run k get nodes
       run: |
-        kubectl get nodes --kubeconfig config
+        kubectl get nodes
         
         
