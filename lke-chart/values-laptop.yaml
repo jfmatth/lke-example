@@ -42,7 +42,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: k3s-test1.mshome.net
+    - host: k3s.mshome.net
       paths: ['/']
   tls: []
   #  - secretName: chart-example-tls
