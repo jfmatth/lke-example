@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: simpleCI
+name: HelmUpgrade
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -23,34 +23,80 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
+    - name: Build image
+      run: docker build . --file Dockerfile -t jfmatth/lke-example-hugo:latest
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: Log into registry
+      run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+
+    - name: Push image
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        docker push jfmatth/lke-example-hugo:latest
 
-    - name: What version of HELM installed?
-      run: | 
-        helm version
-        
-    - name: ls folder
-      run: | 
-        ls -lh
-        
     - name: write KUBECONFIG to file
       run: |
         echo '${{ secrets.KUBECONFIG }}' > config
             
-    - name: run k get nodes
+    - name: helm upgrade
       run: |
-        kubectl get nodes --kubeconfig=config
+        helm upgrade hugo lke-chart --set timestamp="$(date)" --kubeconfig config
+
+
+
+
+# # This is a basic workflow to help you get started with Actions
+
+# name: simpleCI
+
+# # Controls when the action will run. Triggers the workflow on push or pull request
+# # events but only for the master branch
+# on:
+#   push:
+#     branches: [ master ]
+
+#   pull_request:
+#     branches: [ master ]
+
+# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# jobs:
+#   # This workflow contains a single job called "build"
+#   build:
+#     # The type of runner that the job will run on
+#     runs-on: ubuntu-latest
+
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#     - uses: actions/checkout@v2
+
+#     # Runs a single command using the runners shell
+#     - name: Run a one-line script
+#       run: echo Hello, world!
+
+#     # Runs a set of commands using the runners shell
+#     - name: Run a multi-line script
+#       run: |
+#         echo Add other actions to build,
+#         echo test, and deploy your project.
+
+#     - name: What version of HELM installed?
+#       run: | 
+#         helm version
         
-    - name: helm ls
-      run: |
-        helm ls --kubeconfig config
+#     - name: ls folder
+#       run: | 
+#         ls -lh
+        
+#     - name: write KUBECONFIG to file
+#       run: |
+#         echo '${{ secrets.KUBECONFIG }}' > config
+            
+#     - name: run k get nodes
+#       run: |
+#         kubectl get nodes --kubeconfig=config
+        
+#     - name: helm ls
+#       run: |
+#         helm ls --kubeconfig config
         
         
