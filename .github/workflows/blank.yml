@@ -37,3 +37,7 @@ jobs:
       run: | 
         helm version
         
+    - name: ls folder
+      run: | 
+        ls -lh
+        
