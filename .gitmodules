@@ -1,3 +1,9 @@
 [submodule "themes/hugo-notepadium"]
 	path = themes/hugo-notepadium
 	url = https://github.com/cntrump/hugo-notepadium.git
+[submodule "themes/bare"]
+	path = themes/bare
+	url = https://github.com/orf/bare-hugo-theme.git
+[submodule "themes/grapes"]
+	path = themes/grapes
+	url = https://github.com/shankar/hugo-grapes.git
