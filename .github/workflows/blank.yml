@@ -6,7 +6,7 @@ name: HelmUpgrade
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ none ]
 
   # pull_request:
   #   branches: [ master ]
